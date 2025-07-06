@@ -246,12 +246,15 @@ const Dashboard = () => {
                         <div className="flex gap-2">
                           {currentRole === "clerk" && (
                             <>
-                              <Button size="sm" variant="outline">View Details</Button>
+                              <Button size="sm" variant="outline" onClick={() => navigate(`/job-order/${order.id}`)}>View Details</Button>
                               <Button size="sm">Create Summary</Button>
                             </>
                           )}
                           {currentRole === "supervisor" && (
-                            <Button size="sm">Assign Cutter</Button>
+                            <>
+                              <Button size="sm" onClick={() => navigate("/production")}>Production View</Button>
+                              <Button size="sm">Assign Cutter</Button>
+                            </>
                           )}
                           {currentRole === "cutter" && order.status === "cutting" && (
                             <Button size="sm">Mark Complete</Button>
