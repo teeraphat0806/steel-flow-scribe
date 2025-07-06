@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -12,7 +13,8 @@ import {
   DollarSign, 
   Clock,
   Package,
-  CheckCircle
+  CheckCircle,
+  Plus
 } from "lucide-react";
 
 type UserRole = "clerk" | "supervisor" | "cutter" | "delivery";
@@ -143,17 +145,27 @@ const Dashboard = () => {
               </p>
             </div>
             
-            {/* Role Switcher */}
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-muted-foreground">Role:</span>
-              <Tabs value={currentRole} onValueChange={(value) => setCurrentRole(value as UserRole)}>
-                <TabsList className="bg-card shadow-steel">
-                  <TabsTrigger value="clerk">Clerk</TabsTrigger>
-                  <TabsTrigger value="supervisor">Supervisor</TabsTrigger>
-                  <TabsTrigger value="cutter">Cutter</TabsTrigger>
-                  <TabsTrigger value="delivery">Delivery</TabsTrigger>
-                </TabsList>
-              </Tabs>
+            <div className="flex items-center gap-4">
+              {/* Quick Create Button */}
+              <Link to="/new-job-order">
+                <Button variant="steel" size="lg" className="shadow-elevation">
+                  <Plus className="mr-2 h-4 w-4" />
+                  New Job Order
+                </Button>
+              </Link>
+              
+              {/* Role Switcher */}
+              <div className="flex items-center gap-2">
+                <span className="text-sm text-muted-foreground">Role:</span>
+                <Tabs value={currentRole} onValueChange={(value) => setCurrentRole(value as UserRole)}>
+                  <TabsList className="bg-card shadow-steel">
+                    <TabsTrigger value="clerk">Clerk</TabsTrigger>
+                    <TabsTrigger value="supervisor">Supervisor</TabsTrigger>
+                    <TabsTrigger value="cutter">Cutter</TabsTrigger>
+                    <TabsTrigger value="delivery">Delivery</TabsTrigger>
+                  </TabsList>
+                </Tabs>
+              </div>
             </div>
           </div>
         </div>
@@ -296,10 +308,12 @@ const Dashboard = () => {
                 <div className="space-y-2">
                   {currentRole === "clerk" && (
                     <>
-                      <Button className="w-full justify-start" variant="outline">
-                        <FileText className="mr-2 h-4 w-4" />
-                        New Job Order
-                      </Button>
+                      <Link to="/new-job-order">
+                        <Button className="w-full justify-start" variant="outline">
+                          <FileText className="mr-2 h-4 w-4" />
+                          New Job Order
+                        </Button>
+                      </Link>
                       <Button className="w-full justify-start" variant="outline">
                         <DollarSign className="mr-2 h-4 w-4" />
                         Generate Invoice
