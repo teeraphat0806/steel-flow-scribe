@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -75,6 +75,7 @@ const mockJobOrders: JobOrder[] = [
 ];
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [currentRole, setCurrentRole] = useState<UserRole>("clerk");
   const [jobOrders] = useState<JobOrder[]>(mockJobOrders);
 
