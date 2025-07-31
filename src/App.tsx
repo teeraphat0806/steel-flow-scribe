@@ -13,6 +13,7 @@ import CustomerDetails from "./pages/CustomerDetails";
 import ProductionDetails from "./pages/ProductionDetails";
 import GuestDashboard from "./pages/GuestDashboard";
 import SuperadminDashboard from "./pages/SuperadminDashboard";
+import { PayrollManagement } from "./pages/PayrollManagement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -79,6 +80,14 @@ const App = () => (
               element={
                 <ProtectedRoute allowedRoles={['superadmin', 'supervisor', 'cutter']}>
                   <ProductionDetails />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/payroll" 
+              element={
+                <ProtectedRoute allowedRoles={['superadmin', 'clerk']}>
+                  <PayrollManagement />
                 </ProtectedRoute>
               } 
             />
